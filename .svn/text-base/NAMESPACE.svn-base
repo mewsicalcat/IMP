@@ -1,0 +1,43 @@
+import(methods)
+
+importClassesFrom(Biobase, eSet, NChannelSet, VersionedBiobase, Versioned)
+importClassesFrom(oligoClasses, TilingFeatureSet)
+
+importMethodsFrom(oligo, pm, "pm<-", bg, "bg<-", pmindex,
+	pmSequence, bgSequence, getX, getY,
+	pmChr, pmPosition, probeNames, getContainer)
+importMethodsFrom(BSgenome, providerVersion)
+importMethodsFrom(Biobase, annotation, channelNames, rowMedians,
+	sampleNames, "sampleNames<-")
+importMethodsFrom(Biostrings, unmasked, vcountPattern)
+importMethodsFrom(IRanges, Views)
+
+importFrom(oligo, read.xysfiles2)
+importFrom(oligoClasses, ocSamples, ocLapply,
+	splitIndicesByLength, splitIndicesByNode, ldStatus, ldPath)
+importFrom(preprocessCore, normalize.quantiles,
+	normalize.quantiles.use.target)
+importFrom(ff, ff, ffrowapply, ffcolapply, clone, clone.ff)
+importFrom(Biobase, assayDataElement, "assayDataElement<-")
+importFrom(Biostrings, DNAString, DNAStringSet, alphabetFrequency)
+importFrom(nor1mix, norMix, qnorMix)
+importFrom(siggenes, pi0.est, qvalue.cal)
+importFrom(gtools, combinations)
+importFrom(grDevices, dev.off, pdf, palette)
+importFrom(RColorBrewer, brewer.pal)
+importFrom(graphics, abline, hist, layout, legend, lines, par,
+	plot, plot.new, plot.window, text)
+importFrom(stats, density, dnorm, ecdf, lm, loess, loess.control,
+	mad, median, na.exclude, optimize, pnorm, predict, qt, quantile,
+	reshape, sd)
+importFrom(utils, packageDescription, setTxtProgressBar,
+	txtProgressBar)
+
+
+export(bgAdjust, countGC, cpgdensity, dmrFdr, dmrFinder, dmrPlot, 
+	regionPlot, getControlIndex, maxDensity,
+	methPercent, methp, normalizeBetweenSamples, normalizeWithinSamples,
+	plotDensity, qcReport, readCharm, spatialAdjust, validatePd)
+
+# oligo exports (should we import oligo instead?)	 
+export(pmindex, bgindex)

@@ -1,0 +1,634 @@
+<<<<<<< .mine
+v1.1.21
+Added controlProbes as an argument to plotDensity, and specified it when plotDensity is called in methp.  Also added an error if none of the values given as the controlProbes argument to methp are in getContainer(dat).  Also, the column order in the object returned by readCharm is now the same as the UT-channel file order provided by the user.
+
+=======
+v1.1.22 
+Speed improvements from Harris Jaffee to countGC, spatialAdjustAtom, spatialAdjust, spatialAdjustVec, as.image
+
+v1.1.21
+replaced oligo::basecontent with Biostrings::alphabetFrequency in countGC
+
+>>>>>>> .r49776
+v1.1.19
+readCharm now reports a warning if not all file names contain either the ut or md arguments.
+
+v1.1.18
+Changed the ignoreChr argument of dmrFinder to removeIf, which is more general.
+
+v1.1.17
+Changed the previously added warning to a message.  Also added a column to the DMR tables output by dmrFinder reporting the number of probes in each DMR.
+
+v1.1.16
+Added a warning message to readCharm if any columns of sampleKey contain discrepant values and are therefore removed.
+
+v1.1.15
+Moved a line of code that checks the arguments provided in dmrFinder to prevent an error message later on.
+
+v1.1.14
+Added an additional check to the start of methp to make sure excludeIndex is a numeric or integer vector.  Also added ignoreChr argument to dmrFinder to enable removing all DMRs in specified chromosomes from the resulting DMR tables.
+
+v1.1.13
+Added an additional check to the start of dmrFinder to prevent a cryptic error later.  Also changed the manual page for methp to correct the description of the excludeIndex argument.
+
+v1.1.12
+Fixed scaleSamples function (moved return(dat) to after the if statement).
+
+v1.1.11
+Added 'plot.p' argument to dmrPlot and regionPlot.  If plot.p=FALSE, the functions will return plots using the dmr$l data rather than the dmr$p data.  If dmrFinder was used on l instead of p, though, plot.p is necessarily FALSE.
+
+v1.1.10
+Changed the txtProgressBar progress reports in get.tt, get.tt.paired, and get.smooth from style=3 to style=1.
+
+v1.1.9
+Added documentation for dmrPlot and regionPlot.  Updated documentation for dmrFinder and dmrFdr.  Made RColorBrewer and genefilter packages dependencies.
+
+v1.1.8
+readCharm: readCharm now keeps columns with matched NAs in the sampleKey.
+
+v1.1.7
+Added regionPlot to exports
+
+v1.1.6
+Fixed default colors in dmrPlot.
+Added optional argument to dmrPlot to specify how much to plot on either side of each DMR.
+Added a new function, regionPlot, to enable plotting of arbitrary regions on the array, not necessarily dmrs.
+
+v1.1.5
+Bugfix in methPercent. Percentage methylation estimates will change slightly. This fix has been backported to v1.0.1.
+Fixed formatting of the NEWS file.
+
+v1.1.4
+Added dmrPlot to exports
+
+V1.1.3
+Added functions to plot results of dmrFinder.
+Also added options to dmrFinder that enable doing comparisons on paired samples.
+Also removed controlIndex from the list of objects returned by dmrFinder.
+Also added columns for average difference and maximum difference to the dmr tables returned by dmrFinder, and enabled sorting the table by them.
+
+v1.1.2
+Test commit. No code changes.
+
+v1.1.1
+Bioconductor 2.7 branch.
+validatePd now defaults to setting groupColumn to sampleNameColumn instead of reporting an error if not suitable column is found.
+
+v1.1.0
+Bioconductor 2.7 branch. No code changes
+
+v1.0.0
+Bioconductor 2.6 release. No code changes from 0.99.14
+
+v0.99.14
+readCharm now allows NAs in the sampleKey
+
+v0.99.13
+Updated the DESCRIPTION Description field
+
+v0.99.12
+Added bgAdjust.Rd to svn, removed bgAdjustBgp.Rd
+
+v0.99.11
+excludeIndex now subsets pm probes rather than all probes in assayData.
+
+v0.99.10
+dmrFdr: fixed bug where it failed if maxPerms was too large
+methp, normalizeBetweenSamples: added excludeIndex option
+methPercent: fixed bug when handling single samples. fixed example.
+
+v0.99.9
+methp: now returns M only for pm probes
+getM: added rows option
+
+v0.99.8
+cpgdensity: fixed bug causing only NAs to be returned
+
+v0.99.7
+cpgdensity: ignores chromosomes whose data doesn't consist of a single DNAString object
+Changes to accomodate oligo big object support support modifications
+dmrFinder: now excludes replicate probes (probes with same chr and pos)
+
+v0.99.6
+ff-enabled all functions but dmrFinder. We can now deal with large datasets on disk without exhausting RAM.
+spatialAdjust gives slight different results from before since it now uses
+all probes instead of only pm. 
+getBlockSize: fixed a memory bug (pm(dat))
+pmQuality: fixed a memory bug (pm(dat)), fixed an index bug 
+qcReport: fixed a memory bug (pm(dat))
+Documentation improvements
+
+v0.99.5
+Modified examples since the example phenodata.txt in charmData was moved from inst/data to inst/extdata
+
+v0.99.4
+Fixed documentation errors
+
+v0.99.3
+Incorporated Bioconductor package review comments
+
+v0.99.1
+dmrFinder: named the sdBins component of args
+validatePd: when guessing group column now excludes those with a common value for all samples. now returns a status code.
+methp, plotDensity, plotDensityMat: legend uses plotDensityGroups
+dmrFinder: made cutoff a vector, extra parameter validity check (Peter Murakami)
+dmrFdr: now allow missing data in p or l. now returns numPerms
+Documentation improvements
+
+v0.99.0
+Removed deprecated code, including affinityBin, charmCluster, getAffinity, makeSeqX, makeX, addInteractions, debatch
+Exports: Removed pmQuality. Added validatePd
+Imports: Added Biostrings unmasked, DNAString, vcountPattern. Added IRanges Views. Removed spatial. Removed affxparser.
+Major documentation improvements, including vignette
+Corrected rawData in methp to dat
+normalizeWithinSamples: changed controlProbes default to c("CONTROL_PROBES", "CONTROL_REGIONS")
+Added support to scaleSamples for single sample TilingFeatureSets
+Moved unused code from charm.R to deprecated.R
+methp: now passes controlIndex to plotDensity.  Added support for single sample TilingFeatureSets. Modified plotDensityGroups to allow character vectors
+Added getBlockSize
+getControlIndex: Changed default noCpGWindow from NULL to 1000
+dmrFinder: renamed sortby to sortBy. Added sortBy to args. Changed length(eset) to ncol(eset)
+getControlIndex: dropped onlyGood, matrix options. Modified to look for precomputed probes in the annotation file
+dmrFinder: now returns tabs=NULL instead of an error if no DMRs found
+DESCRIPTION Suggests: Added BSgenome.Hsapiens.UCSC.hg18, removed pd.feinberg.hg18.me.hx1
+readCharm: now creates a valid varMetaData object compatible with Bioconductor 2.6
+
+v0.9.33
+dmrFinder changes (Peter Murakami):
+- Changed the way get.tt progress is reported from dots to a progress bar.
+- Made 'package' a required argument of dmrFinder if eset is not provided.
+- Enabled sorting of dmr table in dmrFinder by 'ttarea' instead of 'area'.
+- Removed cutoff, filter, and ws from dmrFinder's returned list object, - since they are already returned in 'args', and it is from 'args' that the results() function takes them.
+- Fixed indendatation
+dmrFdr: changed references to dmr$cutoff, dmr$filter and dmr$ws to dmr$args$cutoff, dmr$args$filter and dmr$args$ws
+Added NEWS
+Added validatePd
+
+v0.9.32
+getControlIndex: check for a file called controlIndex.rda in the data dir before using the container information
+
+v0.9.31
+Documentation updates
+bgAdjustBgp: ceiling Inf values to the next highest value. Removed ff code
+scaleSamples: Added na.rm=TRUE to quantile
+logmethParameters: Added na.rm=TRUE to parameter estimation
+moved scaleSamples from methp to normalizeWithinSamples
+
+v0.9.30
+Updated lowRam.R.ignore and charm.Rnw.ignore in svn
+
+v0.9.29
+Starting removing ff code
+Renamed lowRam.R to lowRam.R.ignore
+Removed ff and bit from DESCRIPTION and NAMESPACE. 
+Removed cluster option from bgAdjustBgp
+Removed calls to stopCluster
+Removed saveRam option from readCharm
+Documentation improvements
+Renamed charm.Rnw to charm.Rnw.ignore
+Removed annotateDMRs, closestTSS, findClosestGeneTxt, findClosestGene
+Removed from Depends: snow
+Removed from Imports: genefilter, ACME
+Removed from Suggests: BSgenome, BSgenome.Hsapiens.UCSC.hg18, org.Hs.eg.db, BSgenome.Mmusculus.UCSC.mm8, org.Mm.eg.db
+Removed require(genefilter) from get.tog
+Removed require(snow) from .onAttach 
+
+v0.9.28
+Fixed a bug in dmrFdr where permutation areas were calculated using logit(p) instead of p
+
+v0.9.27
+Added charmData to suggests
+Modified VignetteDepends line in vignette
+Switched from max.density to mean for the exp alpha parameter estimation in logmethParameters
+
+v0.9.26
+Added Sweave.sty to inst/doc
+Removed the methp msqn option
+Added the methp scale option. Defaults to c(0.99, 0.99)
+Added scaleSamples
+
+v0.9.25
+Modified Description field in DESCRIPTION
+Renamed a dmrFinder return element from m to l
+Updated dmrFdr to use l instead of p to allow the use of log-ratios (or logits) with dmrFinder
+Added missing help files to svn
+
+v0.9.24
+Fixed a bug in dmrFinder that could cause errors when using M instead of p
+
+v0.9.23
+Fixed bugs in pmQuality and arrayImage that caused errors when run on a single sample
+Restricted exports in NAMESPACE to user-facing functions only.
+Started adding documentation.
+
+v0.9.22
+readCharm now takes a samplekey argument which is made available (in reshaped form) in pData(object), and a pkgname argument
+methPercent now accepts single samples 
+
+v0.9.21
+dmrFinder now returns comps (called COMPS internally)
+
+v0.9.20
+Fixed a bug in plotDensity where the incorrect probes were selected for the control plot.
+
+v0.9.19
+dmrFinder now returns M instead of p when passed log-ratios
+
+v0.9.18
+Changed default binSize for affy affinity calculations to 500
+dmrFinder now discards probes where chr, pos or pns are NA
+dmrFinder now returns index
+makeX now accepts probe sequences as an alternative to a FeatureSet
+Added organism="hg19" option to annotateDMRs
+Fixed bug in dmrFdr that caused errors when more than two groups exist
+Added the sdBins option to dmrFinder
+dmrFdr runs the maximum number of possible permutations when a larger number than this is requested (instead of giving an error.)
+
+v0.9.17
+dmrFinder now returns filter and ws, and these values are used by dmrFdr
+
+v0.9.16
+dmrFinder now returns cutoff, and this value is used by dmrFdr
+
+v0.9.15
+Changed to version=1 in dmrFdr qvalue.cal (equivalent to robust=FALSE in the qvalue package.)
+
+2009-12-14 v0.9.14
+  Fix in predictLoess where NAs were returned if using option approx=TRUE
+   and no bins were empty
+  The passed option for commonMethPercentParams is only overridden when NULL
+  Set saveRam default to FALSE for readCharm
+
+2009-12-09 v0.9.12
+  Added dmrFdr and the imports pi0.est, qvalue.cal from siggenes, 
+	combinations from gtools
+  Added prettyTime 
+  Added commonMethPercentParams option to methp. Defaults to true for quantile 
+   norm and false for sqn, sqn99
+
+2009-12-08 v0.9.11
+  Modified K calculation in dmrFinder to ignore NAs
+  qcReport now uses the number of probes on the array for small arrays (rather
+    than the default 500000)
+  Added a check in readCharm that gives a helpful error if the filenames do 
+    not match the expected defaults
+
+2009-12-06 v0.9.10 
+  Fixed a bug in qcReport that caused arrayImage to fail for OfflineTilingFeatureSet2
+  Modified qcReport sd1 to be based on intensity (like sd2) rather than pmQuality
+  Can now pass an annotation string to dmrFinder instead of a TilingFeatureSet2
+
+2009-12-03 v0.9.9
+  Fixed code to work with TilingFeatureSet2
+  Changes normalizeBetweenSamples defaults to m="allQuantiles", untreated="none", enriched="none"
+  qcReport now returns pmSignal and sd for the two channels
+  Bug fix in spatialAdjust: bg probes weren't being corrected
+
+2009-12-01 v0.9.8
+  Added commonParams option to methPercent (default is TRUE)
+
+2009-12-01 v0.9.7
+  Changed useTot default to TRUE
+  Efficiency improvements in arrayImage
+
+2009-11-30 v0.9.6
+  OfflineTilingFeatureSet2 now extends TilingFeatureSet instead of 
+   TilingFeatureSet2 if oligo version >= 1.11
+
+2009-11-20 v0.9.5
+  Added msqn option
+
+2009-11-19 v0.9.4
+  Reintroduced polynomial surface spatial normalization as an option
+  Added option to use total input channel intensity in affinity model
+  Changed methp default binSize to 250
+  Changed plotDensityCols to default to pd$type colors
+
+2009-11-18 v0.9.3
+  Fixed a bug in methp and normalizeWithinSamples where normalizeLoess
+   was called without the cluster argument
+  Added an approx option to normalizeLoess to which speeds up the loess 
+   correction by binning the A-values  
+  Changed normalizeWithinSamples default method to loess
+  Renamed plotDensities to plotDensity2 to avoid conflict with limma
+
+2009-11-16 v0.9.2
+  Added plotDensity option to methp
+  Fixed a bug in annotateDMR that caused it to fail when no DMRs met criteria
+  Added withinSampleNorm="loess" option to methp 
+  Added betweenSampleNorm="none" option to methp
+  New normalization defaults: withinSampleNorm="loess", betweenSampleNorm="quantile"
+  Modified affinity model by dropping tot^2 term.
+  Changed default binSize for affinity calculation to 500
+
+2009-11-09 v0.9.1
+  Added bit (related to ff) to imports
+
+2009-11-06 v0.9.0
+  Branched for R-2.10 compatibility breaking R-2.9 compatibility
+  Import physical from package bit instead of package ff
+  Removed genefilter, spatial and splines from dependencies and imports
+  Updated getControlIndex to allow multiple choices for the 
+   control probe container column
+  Updated read.xysfiles2.offline and read.celfiles2.offline for 	
+    oligo:::getMetadata compatability
+  Fixed a plotting bug in qcReport
+
+2009-11-05 v0.8.22
+  Added support for reading Affy data into disk based OfflineTilingFeatureSet2s
+  Reduced memory use of methPercent with ff objects
+
+2009-11-04 v0.8.21
+  spatialAdjust now uses a kernel smoother instead of a polynomial spline
+  qcReport now produces 3 quality metrics per array: signal strength, and the sd in 
+   the smoothed plots from the two channels
+
+2009-11-03 v0.8.20
+  Modified methp to leave input data unmodified (by creating a working copy)
+  Added simpler choices to methp's betweenSampleNorm: quantile, sqn, sqn99
+  Modified methp to no longer filter out poor quality probes.
+  Fixed a bug in methp that caused prevented the cluster child processes from being
+   stopped at function exit
+
+2009-11-02 v0.8.19
+ Updated normQuantile to allow ff objects for all cases, including full quantile
+   normalization. At the moment they are just converted to matrices and passed to
+   normalize.quantiles and then converted back to ff objects.
+ Fixed a bug in normalizeLoess
+ Added cluster option to dmrFinder
+ Updated dmrFinder to allow ff objects as return values from methp. At the moment it just
+   converts them to regular matrices.
+
+2009-10-28 v0.8.18
+ Fixed a bug in affinityBin where the number of sample groups was incorrectly calculated.
+ Fixed a bug in annotateDMRs that caused it to fail when no DMRs exist
+ Modified methp to start cluster if requested with cluster option
+ Added returnM option to methp to get M instead the default p
+ Use ff by default (unless saveRam is set to FALSE in readCharm)
+
+2009-10-24 v0.8.17
+ Added support for parallel execution using snow. 
+
+2009-10-18 v0.8.16
+ Added bigRam option to readCharm
+
+2009-10-15 v0.8.15
+ Modified pmQuality to return a matrix with column names, and qcReport to allow unnamed samples.
+
+2009-10-05 v0.8.14
+ Modifed code to allow reduced ram usage through the (optional) use of disk-based objects 
+	for large matrices and sample-by-sample processing. The ff package is used.
+ Added bgSubtract option to dmrFinder 
+
+2009-10-01 v0.8.13
+ Fixed a bug in qcReport
+ Modified affinityBin to allow class(dat) = matrix as well as TilingFeatureSet2
+ Consolidated the files in the R directory
+ Added new options to dmrFinder (Peter Murakami) including the ability to select 
+  the pairwise comparisons of interest. Error-checking and other improvements also. 
+ Modified arrayPlot to ceiling and floor plotted values to avoid white spots when
+  values are outside the scale range.
+
+2009-09-22 v0.8.12
+ Updated makeSeqX: Added addInteractions option and changed return type from matrix to data 
+   frame
+ Updated makeX: can now specify a window="probe" or window=SIZE where SIZE is the size of 
+ 	a window centered on the probe.
+ Updated getAffinity, makeSeqX, makeX with options to include A,C,G content of a window
+	centered on the probe in the affinity model
+ Added m option to normalizeBetweenSamples
+ Added enriched=sqn option to normalizeBetweenSamples	
+ Added SQN package to imports (it doesn't yet have a NAMESPACE)
+ Renamed pmvsbg to pmQuality
+ Updated dmrFinder to use new methp options
+ Added regionFilter
+ Updated annotateDMRs to allow peaks as well as DMRs
+
+2009-08-23 v0.8.11
+ Updated normalizeWithinSamples and getAffinity to enable 0-levelling within predicted affinity bins.
+    This is the default.
+ Fixed bug in normalizeWithinSamples where the na.rm option was passed to max.density causing an error
+ Added findClosestGene, a slight modification of the version in the ACME package that allows for queries
+    on chromosomes not present in the annotation file. This happens in, for example, Affy tiling arrays 
+    that include mitochondrial region probes.
+ Renamed methp's spatial adjust options to spatial1d (defatult off) and spatial2d (default on). 
+ Added importFrom(ACME, getRefflat) to NAMESPACE
+
+2009-08-04 v0.8.10
+ Modified normalizeWithinSamples to not use GC content by default. Renamed diffAmpEst to diffAmpEstGC 
+    and diffAmpAdjust to diffAmpAdjustGC
+ Modified normalizeWithinSamples and diffAmpEstGC to use median instead of max.density by default   
+ Added option for affinity based mapping (new default) during Enriched channel normalization. Modified getMap()
+   and added makeX, addInteractions, makeSeqX, getAffinity. Modified normalizeBetweenSamples and normControlBg.
+ Added cpgdensity()
+ Added an option to getControlIndex() to allow identification of probes in CpG-free windows. This is particularly
+   useful for arrays without annotated control probes, e.g. Affy tiling arrays
+ Added option to normalizeWithinSamples to allow passing of control probe indices (instead of only Nimblegen 
+   container name)
+ Added (default) option to normalizeWithinSamples to use only 'good' control probes, i.e. to the right 
+   of the elbow in the Channel 1 vs Channel 2 plot. 
+ Added a temporary fix for the sampleNames problem where it returns a single sample name. 
+   Redefined sampleNames as rownames(pData(dat))
+
+2009-07-02 v0.8.9
+ Modified annotateDMRs to handle gene annotation from a text file
+ Modified dmrFinder to order probes by chr, pns, pos (instead of chr,pos). The previous version had trouble
+  with the bee genome were unassembled sequences are all grouped under chromosome chr and are only ordered
+  by pos within a pns
+ 
+2009-07-01 v0.8.8
+ Fixed a bug with sampleNames option in readCharm()
+
+2009-06-30 v0.8.7
+ Added sampleNames option to readCharm()
+ Changed the default color scale in qcReport to make reports
+  more easily comparable across experiments.Added a r (for range) option to arrayPlot(). 
+  Added utRange and enRange options to qcReport to set the range. Setting these to NULL
+  will choose a range that fits the data set.
+ 
+2009-06-20 v0.8.6
+ Added mouse annotation
+
+2009-06-09 v0.8.5
+ Renamed DMRFinder() to dmrFinder()
+ Renamed the untreated/enriched headings in the qcReport
+ Changed fixed=FALSE to fixed=TRUE in countSeq()'s vCountPattern() call 
+ Added controlIndex option to normalizeBetweenSamples()
+ Modified countSeq() to allow NA for chr
+ Added suppressWarnings to countSeq() and annotateDMRs
+ Modified annotateDMRs to allow M1,M2 as well as P1,P2
+
+2009-06-04 v0.8.4 
+ Added countSeq() function to count the number of occurences of a given sequence in a set of 
+  regions defined by chr, start, stop
+ Added closestTSS() 
+ Added annotateDMRs()
+ Added to NAMESPACE: importFrom(ACME, findClosestGene)
+ Updated countGC() to use oligo's basecontent(). It's masked by Biostrings
+ Fixed bug in qcReport that referred to rawData instead of dat
+ Added to DMRFinder: groups <- as.character(groups)
+ Minor documentation updates
+
+2009-06-03 v0.8.3
+ Modified readCharm() to not need a type assignment. 
+ 
+2009-06-02 v0.8.2 
+ Modified qcReport to retrun the array quality scores
+
+2009-06-02 v0.8.1
+ Reformatted the QC report
+ 
+2009-06-02 v0.8.0
+ Added Rafael's bumpfinder code. Added genefilter to NAMESPACE and DESCRIPTION.
+ Updated between sample normalization code. The options for normalizing the enriched channel are now
+   "control": use control probes only, "bg": use bg probes only, "controlBg": use both
+ Updated readCharm to make more intelligent guesses  
+ Updated pmvsbg to use bg probes of similar gc content if the pm probe's gc cannot be exactly matched
+ Added qcReport() to produce a pdf array quality report
+
+2009-05-29 v0.7.16
+ Removed GC-stratification for control probe norm.
+ Modified diffAmpEst to allow missing values for M and A
+
+2009-05-27 v0.7.15
+ Added 'ctrl' and 'bg' as normalization options for the enriched channel. Normalize within GC-strata
+
+2009-05-25 v0.7.14
+ Updated methp() to identify bad probes right after spatial correction
+
+2009-05-22 v0.7.13
+ Added controlProbes option to normalizeWithinSamples() and updated methp() to use it's controlProbes option.
+
+2009-05-22 v0.7.12
+ Added ... option to readCharm() that is passed through to read.xysfiles2(). 
+
+2009-05-21 v0.7.11
+ Added xlab option to plotDensity2()
+ Added normalizeBetweenSamples() with options for quantile normalization of the UT channel
+  and Zhijn's idea of using control probes for the enriched channel. Added normalizeBetweenSamples() 
+  helper functions normQuantile(), normControlBg() and getMap(). 
+ Added normalizeWithinSamples() as a wrapper for differential amplification adjustment 
+ Modified normQuantile() to no longer use the arbitrary -log2(0.95) target.
+ Added option to getControlIndex() for returning a matrix of control probe values (optionally with NAs for 
+  below the "elbow")
+
+2009-05-18 v0.7.10
+ Added names to the list returned by getControlIndex(). It now defaults to returning all control indices.
+
+2009-05-13 v0.7.9
+ Fixed a bug in methPercent that was causing NAs
+
+2009-05-13 v0.7.8
+ Modified the -log(1-p) prior in logmethPost() to have a point mass at 0. For now the prior
+  probability of -log(1-p)=0 is (roughly) estimated as the proportion of M<0
+ Added getControlIndex() to return indices of 'good' control probes, i.e. to the 
+  right of the elbow
+
+2009-05-11 v0.7.7
+ Renamed the package to charmR
+ Added a (rough) vignette
+ Added the annotation package pd.feinberg.hg18.me.hx1 to the Suggests line in DESCRIPTION
+
+2009-05-10 v0.7.6
+ Fixed a bug in arrayImage() that failed to name row and column images with the sample name.
+ Updated the methp() verbose progress comments
+
+2009-05-09 v0.7.5
+ Added readCharm() to allow easier reading of CHARM xys files. A single path argument
+  is all that's required.
+ Removed the spatialMethod option from methp() and spatialAdjust(). We always use the 2d 
+  polynomial surface option.  
+
+2009-05-08 v0.7.4
+ Starting adding documentation
+
+2009-05-07 v0.7.3
+ Updated code to use NChannelSet internally
+ Modified logmeth.parameters() to estimate the normal sd within GC bins
+ Modified diff.amp.adjust() to use at least 1/10 of control probes
+  instead of 1/2
+ Added arrayImage() and arrayPlot() to plot heatmaps of arrays
+ Added countGC()
+ Modified bg.adjust.bgp() to also adjust bg probes (maybe useful in calling 
+   bad probes later on)
+ Added demedian() and included is as a default option in spatial.adjust()
+ Added pmvsbg() and dynamicRange()
+ Renamed functions to camelCase
+ 
+2009-04-24 v0.7.2
+ Extended the quantileNorm option of methp() to accept:
+  "full": full quantile normalization followed by scaling the 99% percentile
+          to be 95% methylated
+  "99": scale the 99% percentile to be 95% methylated
+  "none": no between sample normalization
+
+2009-04-23 v0.7.1
+ This version is designed for oligo >= 1.8.1
+ Updated extract() to read TilingFeatureSet2 (the output of read.xysfiles2 in
+  oligo). The options used when calling methp() and extract() have changed
+  as a result of thie change.
+ Modified diff.amp.adjust() to use a weighted kernel smoothed estimate of
+  the adjustment factor as a function of GC content
+ Modified spatial.adjust() to center corrected values at median
+  rather than 0
+ Added reshapePd() - a simple wrapper to reshape() with option names that make
+  more sense for multi-channel sample data
+ Changed the default spatialMethod to 2d
+
+2009-04-12 v0.7
+ Added quantnorm()
+ Added A to the methp list output object
+ Estimate the normal sd in logmeth.parameters() by the MAD of M[M<0]
+ A estimation by max density of flat portion of control probe MA plot
+ Added checkBreakpoint()
+ Modified extract to extract data from expressionset objects in addition to TilingFeatureSets
+ Added method="spline" to spatial.adjust(), in addition to method="1d" (default)
+ Modified est.log.A to handle multiple samples and gave it options for max density (default)
+  and normexp estimation
+ Modified logmeth.post to handle multiple samples
+ Added qcflag() and we now take account of A when QC-flagging probes
+
+2009-03-26 v0.6.1
+ Added extract() function to extract data from the oligo TilingFeatureSet
+   object into an internal list structure
+ Modified spatial.adjust() to use the internal list data structure
+ Added debatch()
+ Modified bg.adjust.bgp() to handle multiple samples
+ Added Rafa's myfilter() and myfilterse()
+ Added smooth() to get group means and smoothed estimates of logit(p)
+ Added genefilter for rowSds()
+
+2009-03-17 v0.6
+ Flag probes where one of the channels is at floor 
+   or saturated levels and the other channel is within log2(0.05)
+ Changed A correction to max(curve fit) 
+ Added spatial effect correction
+
+2009-02-25 v0.5
+The following procedure is used to estimate the proportion of methylated DNA:
+Background removal: 
+  We fit an RMA-like model to each array where the background signal 
+  is Normal(mu, s2) and the true signal is Exp(alpha). mu is estimated 
+  by fitting a loess curve through the mode of the background probe
+  distribution for each GC-content bin. s2 is calculated as usual
+  but only using background probes. alpha are estimated 
+  as usual using the signal probes
+Differential amplification correction:
+  We account for differential amplification by estimating a correction
+  factor with a loess curve fit through the control probes (p=1).
+Estimation of p
+  We use the model S = tot-en = X+Y. 
+  X = -log(1-p) ~ Exp(alpha) and Y ~ N(0, s2) 
+  This is the similar to the RMA model except the normal is not 
+  truncated and has mean 0. The posterior expectation of X|S is the same 
+  as in the RMA model except for two factors that are ignored by RMA anyway.
+  After calculating the posterior expectation of -log(1-p) we simply
+  solve for p.
+
+ 
+TO DO
+ Need to add fix for a CHARM array annotation problem:
+     Index=which(pns=="chr1:226808280-226853529")
+     pns[Index[1:16]]="chr1:226808280-226810015"
+     pns[Index[17:57]]="chr1:226849110-226850925"
+     pns[Index[58:85]]="chr1:226852509-226853451"
