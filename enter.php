@@ -123,7 +123,7 @@ foreach ($student_array as $one_student) {
 }
 $student = substr($source, 0, -2);
 
-$sql="INSERT INTO expenseitem (MentorName, House, Date, Vendor, Amount, AmountPerStudent, ExpenseText, Number, StudentName)
+$sql="INSERT INTO Expense (MentorName, House, Date, Vendor, Amount, AmountPerStudent, ExpenseText, Number, StudentName)
 VALUES
 ('".mysql_real_escape_string($Fname)."','".
 mysql_real_escape_string($house)."','".
@@ -144,7 +144,7 @@ if (!mysql_query($sql,$con))
 echo "<p>Hello ".$Fname.".</p>";
 echo "<p>1 record added</p>";
 
- $to0 = mysql_query("SELECT Email FROM UserInformation WHERE (HouseName='$house' || CommitteeName='$house') && ChairInd=1"); 
+ $to0 = mysql_query("SELECT Email FROM User WHERE (HouseName='$house' || CommitteeName='$house') && ChairInd=1"); 
  $toarray = mysql_fetch_assoc($to0);
  $to = $toarray['Email'];
 

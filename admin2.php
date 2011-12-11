@@ -53,7 +53,7 @@ $db_user = 'imptech';
 $db_pwd = 'rockimp';
 
 $database = 'imptech_simple';
-$table = 'expenseitem';
+$table = 'Expense';
 
 $con = mysql_connect($db_host, $db_user, $db_pwd);
 if (!con) {

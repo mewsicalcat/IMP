@@ -59,7 +59,7 @@ if (!$con) {
 
 mysql_select_db("imptech_simple", $con);
 
-$result = mysql_query("SELECT * FROM expenseitem WHERE ExpenseItemID='$choice'");
+$result = mysql_query("SELECT * FROM Expense WHERE ExpenseItemID='$choice'");
 $result_array = mysql_fetch_assoc($result);
 $MentorName = $result_array['MentorName'];
 $House      = $result_array['House'];

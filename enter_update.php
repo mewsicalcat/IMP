@@ -125,7 +125,7 @@ foreach ($student_array as $one_student) {
 }
 $student = substr($source, 0, -2);
 
-$sql="UPDATE expenseitem SET MentorName='$Fname', House='$house', Date='$date', Vendor='$vendor', Amount='$amount', AmountPerStudent='$amountps', ExpenseText='$purpose', Number='$number', StudentName='$student' WHERE ExpenseItemID='$itemid'";
+$sql="UPDATE Expense SET MentorName='$Fname', House='$house', Date='$date', Vendor='$vendor', Amount='$amount', AmountPerStudent='$amountps', ExpenseText='$purpose', Number='$number', StudentName='$student' WHERE ExpenseItemID='$itemid'";
 
 if (!mysql_query($sql,$con))
   {

@@ -53,7 +53,7 @@ if (!$con) {
 
 mysql_select_db("imptech_simple", $con);
 
-$sql="UPDATE expenseitem SET HOHVerify=2 WHERE ExpenseItemID='$choice'";
+$sql="UPDATE Expense SET HOHVerify=2 WHERE ExpenseItemID='$choice'";
 
 if (!mysql_query($sql,$con))
   {
